@@ -1,0 +1,6 @@
+1. Abra o arquivo "OraBolas.exe".
+2. Digite uma posição para X entre 0 e 9 (intervalo fechado).
+3. Digite uma posição para Y entre 0 e 6 (intervalo fechado).
+
+O programa irá mostrar a distancia entre o robô e a bola em cada instante, além de algumas informações do robô e da bola.
+Caso o robô encontre com a bola, o programa irá avisar e mostrar o instante em que ocorreu, assim como as informações do robô e da bola nesse momento.

@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<title>Ora Bolas</title>
+	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+		integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+	<link href="estilo.css" rel="stylesheet">
+	<script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.2/Chart.bundle.js"></script>
+</head>
+
+<body text-align="center">
+	<nav class="navbar navbar-light bg-light" id="navbar">
+		<div class="container-fluid">
+		  <a class="navbar-brand" href="#">
+			<img src="img/logo_FEI.png" alt="" width="80" height="50" class="d-inline-block align-text-top">
+			    <h1 class="subtitle">Projeto Ora Bolas </h1>
+				
+		  </a>
+		</div>
+	  </nav>
+	<div class="container my-4">
+		<div class="row">
+			<div class="col">
+
+				<h1 id="repcamp">Posição do robô X, Y</h1> <input type="text" name="PosX" id="PosX" placeholder="X"> <input type="text" name="PosY" id="PosY" placeholder="Y">
+
+			</div>
+		</div>
+	
+		<div class="row">
+			<div class="col">
+				<button type="submit" value="Enviar" onclick="main()" class="btn btn-primary">Enviar</button>
+			</div>
+		</div>
+		<div class="row">
+
+			<hr>
+
+			<div class="col">
+				<h2>Representação do Campo</h2>
+
+			</div>
+		</div>
+
+
+		<div class="row">
+
+			<div class="col">
+				<canvas id="myCanvas" height="600px" width="900px">Your browser does not support the canvas
+					element.</canvas>
+
+			</div>
+		</div>
+		<div class="row">
+			<div class="col">
+				<button type="submit" id="replay" onclick="replay()" class="btn btn-primary" style="display: none">Replay</button>
+			</div>
+		</div>
+	
+		<div id="grafcontainer" style = "display: none">
+			<hr>
+
+			<div class="row">
+
+				<div class="col">
+					<h2>Gráficos do Robô e da Bola</h2>
+
+				</div>
+			</div>
+
+			<br>
+
+			<div class="row">
+
+				<div class="col">
+					<h4>Trajetória</h4>
+					<input type="checkbox" id="traj" checked="true" onclick="showHide('trajetoria')">
+				</div>
+
+				<div class="col">
+					<h4>Coordenadas</h4>
+					<input type="checkbox" id="coord" checked="true" onclick="showHide('coordenadas')">
+				</div>
+
+				<div class="col">
+					<h4>Velocidade</h4>
+					<input type="checkbox" id="vel" checked="true" onclick="showHide('velocidade')">
+				</div>
+
+				<div class="col">
+					<h4>Aceleração</h4>
+					<input type="checkbox" id="acel" checked="true" onclick="showHide('aceleracao')">
+				</div>
+
+				<div class="col">
+					<h4>Distância</h4>
+					<input type="checkbox" id="dist" checked="true" onclick="showHide('distancia')">
+				</div>
+
+			</div>
+
+			<div id="trajetoria">
+				<br> 
+			
+				<div class="row">
+
+					<div class="col">
+						<div id="Graf">
+							<!-- Plotly chart will be drawn inside this DIV -->
+						</div>
+					</div>
+				</div>
+			</div>	
+
+			<div id="coordenadas">
+				<br>
+
+				<div class="row">
+
+					<div class="col">
+						<h1 class="welcome1"> Coordenadas X e Y da Bola e Robo em função do tempo</h1>
+					</div>
+				</div>
+
+				<div class="row">
+
+					<div class="col">
+						<div id="Graf2"></div>
+					</div>
+				</div>
+
+				<div class="row">
+
+					<div class="col">
+						<div id="Graf3"></div>
+					</div>
+				</div>
+			</div>
+
+			<div id="velocidade">
+				<br>
+
+				<div class="row">
+
+					<div class="col">
+						<h1 class="welcome2"> Vx e Vy da bola e robo pelo Tempo</h1>
+					</div>
+				</div>
+
+				<div class="row">
+					<div class="col">
+						<div id="Graf4"></div>
+					</div>
+				</div>
+
+				<div class="row">
+
+					<div class="col">
+						<div id="Graf5"></div>
+
+					</div>
+				</div>
+			</div>
+
+			<div id="aceleracao">
+				<br>
+
+				<div class="row">
+
+					<div class="col">
+						<h1 class="welcome3"> Ax e Ay da bola e robo pelo Tempo</h1>
+
+					</div>
+				</div>
+
+				<div class="row">
+
+					<div class="col">
+						<div id="Graf6"></div>
+
+					</div>
+				</div>
+
+				<div class="row">
+
+					<div class="col">
+						<div id="Graf7"></div>
+					</div>
+				</div>
+			</div>
+
+			<div id="distancia">
+				<br>
+
+				<div class="row">
+
+					<div class="col">
+						<h1 class="welcome4"> Distancia relativa</h1>
+					</div>
+				</div>
+				
+				<div class="row">
+
+					<div class="col">
+						<div id="Graf8"></div>
+					</div>
+				</div>
+			</div>
+
+		</div>
+
+		<script type="text/javascript" src="Script.js"></script>
+
+		<!--Gráficos-->
+
+
+
+
+
+
+
+
+
+	</div>
+	<script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
+		integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
+		crossorigin="anonymous"></script>
+</body>
+
+</html>
